@@ -23,6 +23,12 @@
 </head>
 <body id="body">
     <div id="overview"></div>
+    <div id="extra">
+      <div class="block">
+      <select id="milestone_selector">
+      </select>
+      </div>
+    </div>
     <div id="statuses">
 		<div id="open"></div>
     <div id="closed">

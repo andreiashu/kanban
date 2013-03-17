@@ -39,7 +39,8 @@ class CodebaseHQAPI {
     function _get_request($full_path, $timeout = 300,$many_pages = false){
         $url = $this->base_url() . $full_path;
         $cache_file = $this->cache_dir .'/'. sha1($url);
-        if (!file_exists($cache_file) || ((time() - @filemtime($cache_file)) > $timeout)) {
+        // caching disabled
+        if (1 || !file_exists($cache_file) || ((time() - @filemtime($cache_file)) > $timeout)) {
             $return = "";
             if(strpos($url,'?'))
               $url_with_page_key = $url . "&page=PAGENUMBER";
@@ -91,6 +92,7 @@ class CodebaseHQAPI {
             fwrite($f, $return);
             fclose($f);
         } else {
+            // caching has been disabled
             $return = file_get_contents($cache_file);
         }
         return $return;
